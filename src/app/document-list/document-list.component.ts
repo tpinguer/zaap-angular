@@ -17,7 +17,7 @@ export class DocumentListComponent implements OnInit {
   }
 
   getDocuments() {
-    this.http.get<any[]>('http://localhost:8000/api/get-documents/').subscribe(
+    this.http.get<any[]>('http://0.0.0.0:8000/api/get-documents/').subscribe(
       (response) => {
         this.documents = response;
       },
@@ -34,7 +34,7 @@ export class DocumentListComponent implements OnInit {
   deleteDocument(documentId: string): void {
     if (confirm('Tem certeza que deseja excluir este documento?')) {
       this.http
-        .delete(`http://localhost:8000/api/delete-doc/${documentId}/`)
+        .delete(`http://0.0.0.0:8000/api/delete-doc/${documentId}/`)
         .subscribe(
           () => {
             this.documents = this.documents.filter(

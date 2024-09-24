@@ -20,7 +20,7 @@ export class DocumentDetailComponent implements OnInit {
   ngOnInit(): void {
     const documentId = this.route.snapshot.paramMap.get('id');
     this.http
-      .get<any>(`http://localhost:8000/api/get-documents-by-id/${documentId}/`)
+      .get<any>(`http://0.0.0.0:8000/api/get-documents-by-id/${documentId}/`)
       .subscribe(
         (response) => {
           this.document = response;
@@ -41,7 +41,7 @@ export class DocumentDetailComponent implements OnInit {
   updateDocument(): void {
     const documentId = this.route.snapshot.paramMap.get('id');
     this.http
-      .put(`http://localhost:8000/api/update-docs/${documentId}/`, {
+      .put(`http://0.0.0.0:8000/api/update-docs/${documentId}/`, {
         name: this.document.name,
         status: this.document.status,
       })

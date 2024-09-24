@@ -29,7 +29,7 @@ export class DocumentFormComponent {
     };
 
     this.http
-      .post('http://localhost:8000/api/documents/', documentData)
+      .post('http://0.0.0.0:8000/api/documents/', documentData)
       .subscribe(
         (response) => {
           this.successMessage = 'Documento criado com sucesso!';

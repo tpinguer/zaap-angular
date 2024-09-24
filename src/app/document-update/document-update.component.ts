@@ -20,23 +20,21 @@ export class DocumentUpdateComponent implements OnInit {
   ngOnInit(): void {
     const documentId = this.route.snapshot.paramMap.get('id');
 
-    this.http
-      .get(`http://localhost:8000/api/documents/${documentId}`)
-      .subscribe(
-        (response: any) => {
-          this.document = response;
-        },
-        (error) => {
-          console.error('Erro ao carregar o documento:', error);
-        }
-      );
+    this.http.get(`http://0.0.0.0:8000/api/documents/${documentId}`).subscribe(
+      (response: any) => {
+        this.document = response;
+      },
+      (error) => {
+        console.error('Erro ao carregar o documento:', error);
+      }
+    );
   }
 
   onSubmit(): void {
     const documentId = this.route.snapshot.paramMap.get('id');
 
     this.http
-      .put(`http://localhost:8000/api/documents/${documentId}`, this.document)
+      .put(`http://0.0.0.0:8000/api/documents/${documentId}`, this.document)
       .subscribe(
         (response) => {
           console.log('Documento atualizado com sucesso:', response);
