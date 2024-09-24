@@ -1,0 +1,80 @@
+<div class="container">
+  <h2>Criar Documento</h2>
+
+  <form (ngSubmit)="onSubmit()" #documentForm="ngForm">
+    <div class="form-group">
+      <label for="documentName">Nome do Documento</label>
+      <input
+        type="text"
+        id="documentName"
+        class="form-control"
+        required
+        name="documentName"
+        [(ngModel)]="document.name"
+        #documentName="ngModel"
+      />
+      <div *ngIf="documentName.invalid && documentName.touched">
+        O nome do documento é obrigatório.
+      </div>
+    </div>
+
+    <div *ngFor="let signer of document.signers; let i = index" class="form-group">
+      <label for="signerName-{{ i }}">Nome do Signatário {{ i + 1 }}</label>
+      <input
+        type="text"
+        id="signerName-{{ i }}"
+        class="form-control"
+        required
+        [(ngModel)]="signer.name"
+        name="signerName-{{ i }}"
+        #signerName="ngModel"
+      />
+      <div *ngIf="signerName.invalid && signerName.touched">
+        O nome do signatário é obrigatório.
+      </div>
+
+      <label for="signerEmail-{{ i }}">Email do Signatário {{ i + 1 }}</label>
+      <input
+        type="email"
+        id="signerEmail-{{ i }}"
+        class="form-control"
+        required
+        [(ngModel)]="signer.email"
+        name="signerEmail-{{ i }}"
+        #signerEmail="ngModel"
+      />
+      <div *ngIf="signerEmail.invalid && signerEmail.touched">
+        Um email válido é obrigatório.
+      </div>
+    </div>
+    <div *ngIf="successMessage" class="success-message">
+      {{ successMessage }}
+    </div>
+
+    <button type="button" class="btn btn-secondary" (click)="addSigner()">Adicionar Signatário</button>
+
+    <div class="form-group">
+      <label for="documentUrl">URL do Documento (PDF)</label>
+      <input
+        type="url"
+        id="documentUrl"
+        class="form-control"
+        required
+        name="documentUrl"
+        [(ngModel)]="document.url"
+        #documentUrl="ngModel"
+      />
+      <div *ngIf="documentUrl.invalid && documentUrl.touched">
+        A URL do documento é obrigatória.
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="documentForm.invalid">
+      Criar Documento
+    </button>
+  </form>
+
+  <button class="btn btn-secondary" [routerLink]="['/documents']" style="margin-top: 20px;">
+    Voltar para Lista de Documentos
+  </button>
+</div>

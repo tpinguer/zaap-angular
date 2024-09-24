@@ -1,0 +1,71 @@
+<h2>Atualizar Documento</h2>
+
+<form (ngSubmit)="onSubmit()" #updateForm="ngForm">
+  <div class="form-group">
+    <label for="documentName">Nome do Documento</label>
+    <input
+      type="text"
+      id="documentName"
+      class="form-control"
+      required
+      name="documentName"
+      [(ngModel)]="document.name"
+      #documentName="ngModel"
+    />
+    <div *ngIf="documentName.invalid && documentName.touched">
+      O nome do documento é obrigatório.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="signerName">Nome do Signatário</label>
+    <input
+      type="text"
+      id="signerName"
+      class="form-control"
+      required
+      name="signerName"
+      [(ngModel)]="document.signerName"
+      #signerName="ngModel"
+    />
+    <div *ngIf="signerName.invalid && signerName.touched">
+      O nome do signatário é obrigatório.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="signerEmail">Email do Signatário</label>
+    <input
+      type="email"
+      id="signerEmail"
+      class="form-control"
+      required
+      name="signerEmail"
+      [(ngModel)]="document.signerEmail"
+      #signerEmail="ngModel"
+    />
+    <div *ngIf="signerEmail.invalid && signerEmail.touched">
+      Um email válido é obrigatório.
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="documentUrl">URL do Documento (PDF)</label>
+    <input
+      type="url"
+      id="documentUrl"
+      class="form-control"
+      required
+      name="documentUrl"
+      [(ngModel)]="document.url"
+      #documentUrl="ngModel"
+    />
+    <div *ngIf="documentUrl.invalid && documentUrl.touched">
+      A URL do documento é obrigatória.
+    </div>
+  </div>
+
+  <button type="submit" class="btn btn-primary" [disabled]="updateForm.invalid">
+    Atualizar Documento
+  </button>
+</form>

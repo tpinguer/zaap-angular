@@ -1,0 +1,28 @@
+<div class="container" *ngIf="document">
+  <h2>Detalhes do Documento</h2>
+
+  <form (ngSubmit)="updateDocument()">
+    <div class="form-group">
+      <label for="name">Nome do Documento:</label>
+      <input
+        type="text"
+        id="name"
+        class="form-control"
+        [(ngModel)]="document.name"
+        name="name"
+        (ngModelChange)="onNameChange()"
+        required
+      />
+    </div>
+
+    <p><strong>Data de Criação:</strong> {{ document.created_at | date: 'dd/MM/yyyy' }}</p>
+
+    <button type="submit" class="btn btn-primary">Salvar Alterações</button>
+  </form>
+
+  <button class="btn btn-secondary" [routerLink]="['/documents']">Voltar para Lista de Documentos</button>
+</div>
+
+<div *ngIf="!document">
+  <p>Carregando detalhes do documento...</p>
+</div>
